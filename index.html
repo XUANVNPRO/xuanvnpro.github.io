@@ -341,7 +341,7 @@
                                             document.getElementById("year").innerHTML = new Date().getFullYear();
                                         </script>
                                     </samp>
-                                    <a href="/">Tzuandz.github.io/</a>
+                                    <a href="/">xuanvnpro.github.io/</a>
                                     . All Rights Reserved.
                                 </p>
                             </div>
@@ -360,90 +360,6 @@
         <script src="./assets/js/libs/jquery-3.7.1.min.js"></script>
         <script src="./assets/js/libs/fuiToast.min.js"></script>
         <script src="./assets/js/libs/fancybox.umd.js"></script>
-        <script src="Tzuandz.github.io/"></script>
+        <script src="xuanvnpro.github.io/"></script>
         <script src="https://cdn.jsdelivr.net/npm/pace-js@latest/pace.min.js" data-pace-options='{"restartOnRequestAfter":false,"eventLag":false}'></script>
-        <script src="./assets/js/index.js?v=3.8"></script>
-
-        <audio id="bgmusic" preload="auto"></audio>
-<script>
-(function () {
-  // 1) Danh sách file nhạc dùng trực tiếp từ thư mục /assets/audio (không phụ thuộc file ngoài)
-  const MUSIC_FILES = [
-    "assets/audio/Anh vui.mp3",
-    "assets/audio/thap drill tu do.mp3",
-    "assets/audio/Đóa phù dung cuối cùng x thap drill tu do.mp3",
-    "assets/audio/Tinh vệ.mp3",
-    "assets/audio/Lao tâm khổ tứ.mp3",
-    "assets/audio/Vạn sự tùy duyên.mp3"
-  ];
-
-  // 2) Tiện ích
-  const pickRandom = () => MUSIC_FILES[Math.floor(Math.random() * MUSIC_FILES.length)];
-  const fileTitle = p => decodeURIComponent(p.split('/').pop()).replace(/\.[^/.]+$/, '');
-  const enc = p => encodeURI(p); // xử lý khoảng trắng & Unicode trong tên file
-
-  // 3) Ẩn toast hỏi quyền
-  const hidePrompt = () => {
-    const p = document.getElementById('toast-prompt');
-    if (p) { p.style.display = 'none'; p.remove(); }
-  };
-
-  // 4) Xử lý nút "Cho phép luôn"
-  document.body.addEventListener('click', async (ev) => {
-    const btn = ev.target.closest('.confirm-btn');
-    if (!btn) return;
-    ev.preventDefault();
-
-    const audio = document.getElementById('bgmusic');
-    if (!audio) return;
-
-    // chỉ bắt đầu tải khi người dùng cho phép
-    audio.preload = 'auto';
-    audio.muted = false;
-    audio.volume = 1.0;
-
-    // chọn & phát bài đầu
-    let current = pickRandom();
-    audio.src = enc(current);
-
-    // khi phát xong -> chọn bài mới, đổi src rồi phát; trình duyệt tự giải phóng buffer cũ
-    audio.onended = async () => {
-      current = pickRandom();
-      // dọn nhanh tham chiếu để tiết kiệm bộ nhớ trước khi gán bài mới
-      audio.removeAttribute('src');
-      audio.load();               // “quên” bài cũ
-      audio.src = enc(current);   // gán bài mới
-      try {
-        await audio.play();
-        window.FuiToast?.success?.(`Đang phát: ${fileTitle(current)}`);
-      } catch (e) {
-        window.FuiToast?.error?.('Không thể phát bài tiếp theo: ' + e.message);
-      }
-    };
-
-    try {
-      await audio.play();
-      window.FuiToast?.success?.(`Đang phát: ${fileTitle(current)}`);
-      hidePrompt(); // ẩn popup xin quyền sau khi phát thành công
-    } catch (e) {
-      window.FuiToast?.error?.('Không thể phát nhạc: ' + e.message);
-    }
-  }, { capture: true });
-
-  // 5) Nút "Không hẹn lại lần sau"
-  document.body.addEventListener('click', (ev) => {
-    const btn = ev.target.closest('.close-btn');
-    if (!btn) return;
-    ev.preventDefault();
-    hidePrompt();
-  }, { capture: true });
-
-  // 6) (Tuỳ chọn) tạm dừng khi tab ẩn, phát lại khi quay về
-  document.addEventListener('visibilitychange', () => {
-    const a = document.getElementById('bgmusic');
-    if (!a) return;
-    if (document.hidden) a.pause();
-    else if (a.src) a.play().catch(()=>{});
-  });
-})();
-</script>
+        <script src="./assets/js/index.js?v=3.8"></script>       
